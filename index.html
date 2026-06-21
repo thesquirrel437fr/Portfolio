@@ -17,7 +17,7 @@
     <!-- Center bubble -->
     <circle cx="200" cy="200" r="44" fill="rgba(245,165,36,0.1)" stroke="rgba(245,165,36,0.6)" stroke-width="1.5"/>
     <text x="200" y="196" text-anchor="middle" font-family="monospace" font-size="8" fill="rgba(245,165,36,0.9)" letter-spacing="3">PROJECTS</text>
-    <text x="200" y="212" text-anchor="middle" font-family="Georgia,serif" font-size="18" fill="rgba(232,225,212,0.9)" font-style="italic">7</text>
+    <text x="200" y="212" text-anchor="middle" font-family="Georgia,serif" font-size="18" fill="rgba(232,225,212,0.9)" font-style="italic">10</text>
     <!-- Orbit bubbles -->
     <circle cx="330" cy="200" r="22" fill="rgba(245,165,36,0.08)" stroke="rgba(245,165,36,0.3)" stroke-width="1"/>
     <circle cx="265" cy="86"  r="20" fill="rgba(245,165,36,0.08)" stroke="rgba(245,165,36,0.3)" stroke-width="1"/>
@@ -321,7 +321,7 @@
       <canvas id="orbit-canvas"></canvas>
       <div class="center-bubble">
         <div class="center-bubble-label">projects</div>
-        <div class="center-bubble-num">7</div>
+        <div class="center-bubble-num">10</div>
       </div>
     </div>
     <p class="orbit-hint">// click any bubble to explore</p>
@@ -382,43 +382,63 @@ const PROJECTS = [
     desc: 'Forensic analysis of a simulated security breach at "Cloud Services, Inc." Reconstructed the full attack chain — SSH brute force, privilege escalation, backup-account persistence, loopback pivot, and 100+ files staged for exfiltration — from auth.log, Suricata alerts, and auditd events. Mapped each step to MITRE ATT&CK and produced a phased remediation roadmap accounting for HIPAA / PCI-DSS exposure.',
     tags: ['incident response','MITRE ATT&CK','log analysis','forensics'],
     link: 'https://github.com/thesquirrel437fr/Portfolio/blob/main/reports/incident-analysis.pdf',
-    linkLabel: 'read report', size: 108, speed: 0.00036,
+    linkLabel: 'read report', size: 110, speed: 0.00032,
   },
   {
     id: '02', name: 'Local LLM Stack', teaser: 'Self-hosted\nAI inference',
     desc: 'Self-hosted AI inference lab on consumer hardware (RTX 3080). Ollama for chat, ComfyUI and Stable Diffusion for images, Open WebUI as the front end. Cloud-free, prompt-private, and slightly louder than expected.',
     tags: ['Ollama','Stable Diffusion','ComfyUI','self-hosted'],
-    link: '#', linkLabel: 'details', size: 100, speed: 0.00052,
+    link: '#', linkLabel: 'details', size: 102, speed: 0.00048,
   },
   {
-    id: '03', name: 'Flipper Zero', teaser: 'RF / NFC\nhardware hacking',
-    desc: 'Hardware security tinkering with the Flipper Zero — magstripe emulation via MagSpoof, sub-GHz RF, NFC. Taught me more about access control than any textbook, and confused exactly one hotel front desk.',
-    tags: ['Flipper Zero','RF','NFC','hardware'],
-    link: '#', linkLabel: 'details', size: 96, speed: 0.00044,
-  },
-  {
-    id: '04', name: 'Choice Engine', teaser: 'C++ branching\nadventure game',
+    id: '03', name: 'Choice Engine', teaser: 'C++ branching\nadventure game',
     desc: 'A Stanley Parable–inspired choose-your-own-adventure built in C++ with raylib. Animated sprites, branching narrative scenes, a dragon boss fight, and a scrolling credits screen. Group project, three-person team.',
     tags: ['C++','raylib','OOP','game design'],
-    link: '#', linkLabel: 'view repo', size: 96, speed: 0.00030,
+    link: '#', linkLabel: 'view repo', size: 96, speed: 0.00028,
   },
   {
-    id: '05', name: 'Minecraft Server', teaser: 'Paper server\nsysadmin & tuning',
-    desc: 'Self-hosted Paper server with custom plugin configuration. Solved despawn-radius bugs around portal-based piglin farms, world tuning, and player ops. Lessons in JVM tuning and Linux service management.',
-    tags: ['Java / Paper','Linux','sysadmin'],
-    link: '#', linkLabel: 'details', size: 90, speed: 0.00060,
+    id: '04', name: 'Home Lab', teaser: 'Multi-OS\nsecurity testing',
+    desc: 'Multi-OS security lab for controlled attack/defense experiments. macOS VMs on a Windows 11 hypervisor, hardened Raspberry Pi services running isolated workloads, and a segmented network for traffic analysis and exploit testing without collateral damage.',
+    tags: ['VMware','Linux','macOS','Raspberry Pi','security lab'],
+    link: '#', linkLabel: 'details', size: 98, speed: 0.00042,
   },
   {
-    id: '06', name: 'Jellyfin Server', teaser: 'Pi media\nstreaming setup',
-    desc: 'Raspberry Pi running Jellyfin for self-hosted media streaming. Diagnosed and fixed library indexing failures stemming from restrictive POSIX permissions. SSH-driven workflow, scp pipelines for transfers.',
-    tags: ['Raspberry Pi','Jellyfin','bash'],
-    link: '#', linkLabel: 'details', size: 88, speed: 0.00040,
+    id: '05', name: 'Wall-Drawing Robot', teaser: 'Arduino plotter\nvertical surfaces',
+    desc: 'Arduino-driven vertical plotter that reproduces any digital image on walls. Custom gantry with stepper motors, belt-driven carriage, and G-code interpreter fed from processed raster data. Built to draw at scale where printers can\'t reach.',
+    tags: ['Arduino','stepper motors','G-code','image processing'],
+    link: '#', linkLabel: 'details', size: 94, speed: 0.00036,
   },
   {
-    id: '07', name: 'n8n Pipeline', teaser: 'Automated\ncontent workflow',
-    desc: 'Automated workflow that fetches trending topics and routes them through Telegram for human selection. Debugged a per-chat vs global storage mismatch that was silently dropping every result.',
-    tags: ['n8n','automation','Telegram API'],
-    link: '#', linkLabel: 'details', size: 86, speed: 0.00048,
+    id: '06', name: 'Rubik\'s Cube Solver', teaser: 'CV + servo\nautomated solving',
+    desc: 'Automated Rubik\'s Cube solver combining computer vision pattern recognition with servo-driven mechanical grippers. Scans each face via webcam, runs Kociemba\'s two-phase algorithm for an optimal solution, and executes in under 90 seconds.',
+    tags: ['computer vision','servos','algorithms','Python','Arduino'],
+    link: '#', linkLabel: 'details', size: 100, speed: 0.00034,
+  },
+  {
+    id: '07', name: 'Bionic Claws', teaser: 'Wolverine-style\nmechanical actuation',
+    desc: 'Retractable claw rig with spring-loaded mechanical actuation triggered by wrist flexion. 3D-printed housing with adjustable tension, sliding rail bearings, and a locking mechanism that holds both extended and retracted positions cleanly.',
+    tags: ['mechanical design','3D printing','actuation','prototyping'],
+    link: '#', linkLabel: 'details', size: 90, speed: 0.00050,
+  },
+  {
+    id: '08', name: 'Custom RC Car', teaser: 'Component-built\nfrom scratch',
+    desc: 'RC car built entirely from individual components — chassis plate, ESCs, brushless motor, LiPo battery pack, differential, and 2.4 GHz radio receiver. Custom wiring harness with XT60 connectors, thermal management for sustained runs.',
+    tags: ['RC','electronics','soldering','LiPo','assembly'],
+    link: '#', linkLabel: 'details', size: 88, speed: 0.00044,
+  },
+  {
+    id: '09', name: 'ShortForm Engine', teaser: '$0 short-form\nvideo pipeline',
+    desc: 'Self-hosted, zero-cost short-form video pipeline. Ollama writes scripts, Fish-Speech clones voices with a custom throat-rasp DSP chain, an animated avatar lip-bounces to the audio, and word-synced captions sit over looping gameplay — all composed by FFmpeg into a ready-to-post 1080×1920 MP4. Split-host across Mac mini + Windows/RTX 3080.',
+    tags: ['Ollama','Fish-Speech','FFmpeg','Python','voice cloning','local AI'],
+    link: 'https://github.com/thesquirrel437fr/shortform-engine',
+    linkLabel: 'view repo', size: 108, speed: 0.00030,
+  },
+  {
+    id: '10', name: 'Trading Scanner', teaser: 'Paper trading\nresearch system',
+    desc: 'Systematic paper-trading research engine on the Alpaca API. VWAP mean-reversion and options put-credit-spread strategies with vectorized backtesting, FIFO-reconciled journal-based P&L, and a locked promotion bar (profit factor ≥ 1.3, ≥ 100 closed trades) before any real capital. Every edge validated out-of-sample.',
+    tags: ['Python','Alpaca API','backtesting','options','quant'],
+    link: 'https://github.com/thesquirrel437fr/trading-scanner',
+    linkLabel: 'view repo', size: 104, speed: 0.00038,
   },
 ];
 
@@ -554,8 +574,9 @@ function openProject(i) {
 
   // Unique background per project
   const bgFns = [
-    drawForensics, drawLLM, drawFlipper,
-    drawGame, drawMinecraft, drawJellyfin, drawN8N
+    drawForensics, drawLLM, drawGame,
+    drawHomeLab, drawPlotter, drawRubik,
+    drawClaws, drawRCCar, drawShortForm, drawTrading
   ];
   bgFns[i](overlayBg);
 
@@ -691,50 +712,6 @@ function drawLLM(container) {
   activeBgRaf = requestAnimationFrame(frame);
 }
 
-// ─── BG 03: FLIPPER ZERO — oscilloscope RF waves ─────────────────
-function drawFlipper(container) {
-  container.style.background = '#010a08';
-  const cv = makeCanvas(container);
-  const c = cv.getContext('2d');
-  let t = 0;
-  function frame() {
-    cv.width = cv.offsetWidth; cv.height = cv.offsetHeight;
-    const W = cv.width, H = cv.height;
-    c.fillStyle = 'rgba(1,10,8,0.4)';
-    c.fillRect(0,0,W,H);
-    // grid
-    c.strokeStyle = 'rgba(0,220,160,0.07)';
-    c.lineWidth = 1;
-    for (let x=0;x<W;x+=50){c.beginPath();c.moveTo(x,0);c.lineTo(x,H);c.stroke();}
-    for (let y=0;y<H;y+=50){c.beginPath();c.moveTo(0,y);c.lineTo(W,y);c.stroke();}
-    // Multiple RF waveforms
-    const waves = [
-      { freq: 1.0, amp: 0.18, phase: 0,    color: 'rgba(0,220,160,0.7)', lw: 2 },
-      { freq: 2.4, amp: 0.10, phase: 1.0,  color: 'rgba(0,180,140,0.4)', lw: 1.5 },
-      { freq: 0.4, amp: 0.22, phase: 2.5,  color: 'rgba(0,255,180,0.25)', lw: 1 },
-      { freq: 3.8, amp: 0.06, phase: 0.4,  color: 'rgba(100,255,200,0.2)', lw: 1 },
-    ];
-    waves.forEach(w => {
-      c.beginPath();
-      for (let x=0; x<=W; x+=2) {
-        const y = H/2 + Math.sin((x/W)*Math.PI*2*w.freq*2 + t*0.04 + w.phase) * H * w.amp;
-        x===0 ? c.moveTo(x,y) : c.lineTo(x,y);
-      }
-      c.strokeStyle = w.color; c.lineWidth = w.lw; c.stroke();
-    });
-    // Dot (scan position)
-    const scanX = (t * 3) % W;
-    const scanY = H/2 + Math.sin((scanX/W)*Math.PI*4 + t*0.04) * H * 0.18;
-    c.beginPath(); c.arc(scanX, scanY, 4, 0, Math.PI*2);
-    c.fillStyle = 'rgba(0,255,180,0.9)'; c.fill();
-    c.beginPath(); c.arc(scanX, scanY, 10, 0, Math.PI*2);
-    c.strokeStyle = 'rgba(0,255,180,0.3)'; c.lineWidth=1; c.stroke();
-    t++;
-    activeBgRaf = requestAnimationFrame(frame);
-  }
-  activeBgRaf = requestAnimationFrame(frame);
-}
-
 // ─── BG 04: GAME — pixel dungeon grid ────────────────────────────
 function drawGame(container) {
   container.style.background = '#07050e';
@@ -781,192 +758,334 @@ function drawGame(container) {
   activeBgRaf = requestAnimationFrame(frame);
 }
 
-// ─── BG 05: MINECRAFT — falling pixel blocks ──────────────────────
-function drawMinecraft(container) {
-  container.style.background = '#040c02';
+// ─── BG 04: HOME LAB — server rack + terminal tiles ──────────────
+function drawHomeLab(container) {
+  container.style.background = '#010601';
   const cv = makeCanvas(container);
   const c = cv.getContext('2d');
-  const TILE = 20;
-  const PALETTE = [
-    ['#3a7a1a','#2d6014','#4a9020','#4a7a32'],  // grass
-    ['#5c4a28','#3d2e18','#6e5e30','#4a3820'],  // dirt
-    ['#555555','#444444','#666666','#4a4a4a'],  // stone
-    ['#1a6e1a','#155514','#24a024','#1a821a'],  // leaves
-    ['#8b6914','#705510','#a07c18','#7a5c10'],  // wood
+  let t = 0;
+  const TERMS = [
+    { x: 0.08, y: 0.12, w: 0.38, h: 0.35, lines: ['root@kali:~# nmap -sV 10.0.0.0/24','Starting Nmap 7.94 ...','80/tcp  open  http   Apache','443/tcp open  ssl    nginx','22/tcp  open  ssh    OpenSSH','Nmap done: 3 hosts up'], color: 'rgba(0,220,60,0.55)' },
+    { x: 0.55, y: 0.08, w: 0.38, h: 0.35, lines: ['[SURICATA] alert tcp any -> $HOME','[SURICATA] ET SCAN NMAP','[SURICATA] SSH Brute Force','[auditd] SYSCALL execve /bin/bash','[auditd] uid=0 gid=0'], color: 'rgba(255,180,60,0.45)' },
+    { x: 0.08, y: 0.58, w: 0.38, h: 0.35, lines: ['[VM: macOS-Sequoia] RUNNING','[VM: Ubuntu-Server] RUNNING','[VM: Windows-11-Analysis] STOPPED','[VM: Kali-Purple] RUNNING','CPU: 72%  RAM: 14.2/32GB'], color: 'rgba(100,180,255,0.45)' },
+    { x: 0.55, y: 0.50, w: 0.38, h: 0.42, lines: ['rpi-cluster-01 : ONLINE','rpi-pihole     : ONLINE','rpi-jellyfin   : MAINTENANCE','rpi-camera     : ONLINE','rpi-vpn-gw     : ONLINE','[NET SEGMENT] 192.168.137.0/24'], color: 'rgba(180,100,255,0.45)' },
   ];
-  const cols = Math.ceil(1400/TILE)+2;
-  // terrain heights (sine wave)
-  const terrain = Array.from({length: cols}, (_,i) =>
-    Math.floor(6 + 3 * Math.sin(i * 0.3) + 2 * Math.sin(i * 0.7))
-  );
-  let particles = Array.from({length:18}, () => spawnParticle(cols));
-
-  function spawnParticle(cols) {
-    const col = Math.floor(Math.random()*cols);
-    const palette = PALETTE[Math.floor(Math.random()*PALETTE.length)];
-    return { col, y: -TILE, vy: 0.8+Math.random()*1.2, color: palette[Math.floor(Math.random()*palette.length)] };
-  }
-
   function frame() {
     cv.width = cv.offsetWidth; cv.height = cv.offsetHeight;
     const W = cv.width, H = cv.height;
-    const rows = Math.ceil(H/TILE)+2;
-    c.fillStyle = '#040c02'; c.fillRect(0,0,W,H);
-
-    // Sky gradient
-    const sky = c.createLinearGradient(0,0,0,H*0.5);
-    sky.addColorStop(0,'rgba(8,20,4,0.9)');
-    sky.addColorStop(1,'transparent');
-    c.fillStyle = sky; c.fillRect(0,0,W,H*0.5);
-
-    // Draw terrain
-    terrain.forEach((height, col) => {
-      const palette = PALETTE[0]; // grass on top
-      for (let r = 0; r < Math.min(height+4, rows); r++) {
-        const p = r===0 ? PALETTE[0] : r<2 ? PALETTE[1] : PALETTE[2];
-        c.fillStyle = p[col%p.length];
-        c.fillRect(col*TILE, H - (height-r)*TILE, TILE-1, TILE-1);
-      }
+    c.fillStyle = '#010601'; c.fillRect(0,0,W,H);
+    // scanlines
+    for (let y=0;y<H;y+=3){c.fillStyle='rgba(0,0,0,0.12)';c.fillRect(0,y,W,1);}
+    TERMS.forEach(term=>{
+      const tx=term.x*W, ty=term.y*H, tw=term.w*W, th=term.h*H;
+      c.fillStyle='rgba(0,0,0,0.5)'; c.fillRect(tx,ty,tw,th);
+      c.strokeStyle='rgba(0,255,60,0.15)'; c.lineWidth=1; c.strokeRect(tx,ty,tw,th);
+      c.font='11px "JetBrains Mono",monospace'; c.fillStyle=term.color;
+      term.lines.forEach((line,i)=>{c.fillText(line,tx+12,ty+22+i*18);});
+      // blinking cursor
+      if(Math.floor(t/25)%2===0){c.fillStyle=term.color;c.fillRect(tx+12+term.lines[0].length*6.7,ty+9,7,13);}
     });
-
-    // Falling particles
-    particles.forEach((p, i) => {
-      p.y += p.vy;
-      const groundY = H - terrain[Math.min(p.col, terrain.length-1)] * TILE;
-      if (p.y >= groundY) {
-        particles[i] = spawnParticle(Math.ceil(W/TILE)+2);
-        particles[i].y = -TILE;
-        return;
-      }
-      c.fillStyle = p.color;
-      c.fillRect(p.col*TILE, p.y, TILE-1, TILE-1);
-      c.fillStyle = 'rgba(255,255,255,0.08)';
-      c.fillRect(p.col*TILE+1, p.y+1, TILE-3, 4);
-    });
-
-    activeBgRaf = requestAnimationFrame(frame);
-  }
-  activeBgRaf = requestAnimationFrame(frame);
-}
-
-// ─── BG 06: JELLYFIN — film strip + stars ────────────────────────
-function drawJellyfin(container) {
-  container.style.background = '#020210';
-  const cv = makeCanvas(container);
-  const c = cv.getContext('2d');
-  // Stars
-  const stars = Array.from({length:80}, () => ({
-    x: Math.random(), y: Math.random(), r: Math.random()*1.5+0.3, tw: Math.random()*Math.PI*2,
-  }));
-  let filmX = 0;
-  const STRIP_H = 72, FRAME_W = 96, HOLE = 10;
-
-  function drawFilmStrip(yPos, direction, speed) {
-    filmX = (filmX + speed) % FRAME_W;
-    const offset = direction > 0 ? filmX : FRAME_W - filmX;
-    c.fillStyle = '#0a0a20';
-    c.fillRect(0, yPos, cv.width, STRIP_H);
-    c.strokeStyle = 'rgba(100,80,200,0.3)';
-    c.lineWidth = 1;
-    c.strokeRect(0, yPos, cv.width, STRIP_H);
-    // holes
-    for (let x = -FRAME_W + (offset % FRAME_W); x < cv.width + FRAME_W; x += FRAME_W) {
-      c.fillStyle = '#020210';
-      c.fillRect(x + 8, yPos + 6, HOLE, HOLE);
-      c.fillRect(x + 8, yPos + STRIP_H - HOLE - 6, HOLE, HOLE);
+    // LED blink on "rack"
+    for(let i=0;i<8;i++){
+      const lx=W*0.92, ly=H*(0.1+i*0.1);
+      c.beginPath(); c.arc(lx,ly,3,0,Math.PI*2);
+      c.fillStyle=Math.sin(t*0.05+i)*0.5>0?'rgba(0,255,60,0.7)':'rgba(0,255,60,0.15)'; c.fill();
     }
-    // frame dividers
-    c.strokeStyle = 'rgba(100,80,200,0.2)';
-    for (let x = -FRAME_W + (offset % FRAME_W); x < cv.width + FRAME_W; x += FRAME_W) {
-      c.beginPath(); c.moveTo(x, yPos); c.lineTo(x, yPos+STRIP_H); c.stroke();
-    }
-  }
-
-  function frame() {
-    cv.width = cv.offsetWidth; cv.height = cv.offsetHeight;
-    const W = cv.width, H = cv.height;
-    c.fillStyle = '#020210'; c.fillRect(0,0,W,H);
-
-    // Stars
-    stars.forEach(s => {
-      s.tw += 0.02;
-      const alpha = 0.3 + 0.5*Math.sin(s.tw);
-      c.beginPath(); c.arc(s.x*W, s.y*H, s.r, 0, Math.PI*2);
-      c.fillStyle = `rgba(180,160,255,${alpha})`; c.fill();
-    });
-
-    // Jellyfin purple glow
-    const glow = c.createRadialGradient(W*0.5, H*0.5, 0, W*0.5, H*0.5, W*0.6);
-    glow.addColorStop(0,'rgba(80,60,200,0.12)'); glow.addColorStop(1,'transparent');
-    c.fillStyle = glow; c.fillRect(0,0,W,H);
-
-    drawFilmStrip(H*0.15, 1, 0.5);
-    drawFilmStrip(H*0.75, -1, 0.35);
-
-    activeBgRaf = requestAnimationFrame(frame);
-  }
-  activeBgRaf = requestAnimationFrame(frame);
-}
-
-// ─── BG 07: n8n — animated node graph ───────────────────────────
-function drawN8N(container) {
-  container.style.background = '#080608';
-  const cv = makeCanvas(container);
-  const c = cv.getContext('2d');
-  let nodes = [], edges = [];
-  function init() {
-    cv.width = cv.offsetWidth; cv.height = cv.offsetHeight;
-    nodes = Array.from({length:14}, () => ({
-      x: 0.08+Math.random()*0.84, y: 0.08+Math.random()*0.84,
-      vx: (Math.random()-0.5)*0.00018, vy: (Math.random()-0.5)*0.00018,
-      r: 7+Math.random()*7, pulse: Math.random()*Math.PI*2,
-    }));
-    edges = [];
-    for (let i=0;i<nodes.length;i++) for (let j=i+1;j<nodes.length;j++) {
-      if (Math.random()<0.3) edges.push({a:i,b:j,progress:Math.random()});
-    }
-  }
-  init();
-  let t=0;
-  function frame() {
-    if (Math.abs(cv.width-cv.offsetWidth)>20) init();
-    const W=cv.width, H=cv.height;
-    c.fillStyle='rgba(8,6,8,0.3)'; c.fillRect(0,0,W,H);
-    nodes.forEach(n=>{
-      n.x=Math.max(0.05,Math.min(0.95,n.x+n.vx));
-      n.y=Math.max(0.05,Math.min(0.95,n.y+n.vy));
-      n.pulse+=0.035;
-    });
-    edges.forEach(e=>{
-      e.progress=(e.progress+0.004)%1;
-      const na=nodes[e.a], nb=nodes[e.b];
-      c.beginPath(); c.moveTo(na.x*W,na.y*H); c.lineTo(nb.x*W,nb.y*H);
-      c.strokeStyle='rgba(245,165,36,0.1)'; c.lineWidth=1; c.stroke();
-      // travelling packet
-      const px=(na.x+(nb.x-na.x)*e.progress)*W;
-      const py=(na.y+(nb.y-na.y)*e.progress)*H;
-      c.beginPath(); c.arc(px,py,3,0,Math.PI*2);
-      c.fillStyle='rgba(245,165,36,0.8)'; c.fill();
-      // trail
-      const tx=(na.x+(nb.x-na.x)*Math.max(0,e.progress-0.06))*W;
-      const ty=(na.y+(nb.y-na.y)*Math.max(0,e.progress-0.06))*H;
-      c.beginPath(); c.moveTo(px,py); c.lineTo(tx,ty);
-      c.strokeStyle='rgba(245,165,36,0.35)'; c.lineWidth=2; c.stroke();
-    });
-    nodes.forEach(n=>{
-      const g=0.5+0.5*Math.sin(n.pulse);
-      c.beginPath(); c.arc(n.x*W,n.y*H,n.r,0,Math.PI*2);
-      c.fillStyle=`rgba(245,165,36,${0.1+0.08*g})`; c.fill();
-      c.strokeStyle=`rgba(245,165,36,${0.35+0.3*g})`; c.lineWidth=1.5; c.stroke();
-      // node label dot
-      c.beginPath(); c.arc(n.x*W,n.y*H,2,0,Math.PI*2);
-      c.fillStyle='rgba(245,165,36,0.9)'; c.fill();
-    });
     t++;
     activeBgRaf = requestAnimationFrame(frame);
   }
   activeBgRaf = requestAnimationFrame(frame);
 }
+
+// ─── BG 05: PLOTTER — grid + mechanical drawing arm ───────────────
+function drawPlotter(container) {
+  container.style.background = '#040210';
+  const cv = makeCanvas(container);
+  const c = cv.getContext('2d');
+  let t = 0, path = [];
+  function frame() {
+    cv.width = cv.offsetWidth; cv.height = cv.offsetHeight;
+    const W = cv.width, H = cv.height;
+    c.fillStyle = 'rgba(4,2,16,0.4)'; c.fillRect(0,0,W,H);
+    // Grid
+    c.strokeStyle = 'rgba(60,40,120,0.10)'; c.lineWidth = 1;
+    const gs = 40;
+    for(let x=0;x<W;x+=gs){c.beginPath();c.moveTo(x,0);c.lineTo(x,H);c.stroke();}
+    for(let y=0;y<H;y+=gs){c.beginPath();c.moveTo(0,y);c.lineTo(W,y);c.stroke();}
+    // Lissajous plotter path
+    if(t%3===0 && path.length<300){
+      const px = 0.1+0.8*((Math.sin(t*0.013)+1)/2);
+      const py = 0.1+0.8*((Math.cos(t*0.019+1.5)+1)/2);
+      path.push({x:px*W, y:py*H});
+      if(path.length>300)path.shift();
+    }
+    // Draw path
+    if(path.length>1){
+      c.beginPath(); c.moveTo(path[0].x,path[0].y);
+      for(let i=1;i<path.length;i++)c.lineTo(path[i].x,path[i].y);
+      c.strokeStyle='rgba(245,165,36,0.5)'; c.lineWidth=2; c.stroke();
+    }
+    // Pen head
+    if(path.length){
+      const p=path[path.length-1];
+      c.beginPath(); c.arc(p.x,p.y,6,0,Math.PI*2);
+      c.fillStyle='rgba(245,165,36,0.85)'; c.fill();
+      c.beginPath(); c.arc(p.x,p.y,12,0,Math.PI*2);
+      c.strokeStyle='rgba(245,165,36,0.25)'; c.lineWidth=1; c.stroke();
+    }
+    // Crosshair at center
+    c.strokeStyle='rgba(100,60,180,0.3)'; c.lineWidth=1;
+    c.beginPath();c.moveTo(W/2-15,H/2);c.lineTo(W/2+15,H/2);c.stroke();
+    c.beginPath();c.moveTo(W/2,H/2-15);c.lineTo(W/2,H/2+15);c.stroke();
+    c.beginPath();c.arc(W/2,H/2,20,0,Math.PI*2);c.stroke();
+    t++;
+    activeBgRaf = requestAnimationFrame(frame);
+  }
+  activeBgRaf = requestAnimationFrame(frame);
+}
+
+// ─── BG 06: RUBIK — colored squares algorithmic rotation ──────────
+function drawRubik(container) {
+  container.style.background = '#020208';
+  const cv = makeCanvas(container);
+  const c = cv.getContext('2d');
+  const COLS = ['rgba(200,50,50,0.9)','rgba(50,180,50,0.9)','rgba(50,100,220,0.9)','rgba(240,200,20,0.9)','rgba(240,120,20,0.9)','rgba(240,240,240,0.9)'];
+  let squares = [], t=0;
+  function init(){
+    cv.width=cv.offsetWidth;cv.height=cv.offsetHeight;
+    squares=Array.from({length:24},(_,i)=>({
+      x:0.05+Math.random()*0.9,y:0.05+Math.random()*0.9,
+      s:8+Math.random()*16, r:Math.random()*Math.PI*2,
+      vr:(Math.random()-0.5)*0.015, color:COLS[i%COLS.length],
+      pulse:Math.random()*Math.PI*2
+    }));
+  }
+  init();
+  function frame(){
+    if(Math.abs(cv.width-cv.offsetWidth)>20)init();
+    const W=cv.width,H=cv.height;
+    c.fillStyle='rgba(2,2,8,0.4)';c.fillRect(0,0,W,H);
+    squares.forEach(s=>{
+      s.r+=s.vr; s.pulse+=0.03;
+      c.save();c.translate(s.x*W,s.y*H);c.rotate(s.r);
+      const alpha=0.4+0.4*Math.sin(s.pulse);
+      c.fillStyle=s.color.replace('0.9',alpha.toFixed(2));c.fillRect(-s.s,-s.s,s.s*2,s.s*2);
+      c.strokeStyle='rgba(255,255,255,0.2)';c.lineWidth=1;c.strokeRect(-s.s,-s.s,s.s*2,s.s*2);
+      c.restore();
+    });
+    t++;
+    activeBgRaf=requestAnimationFrame(frame);
+  }
+  activeBgRaf=requestAnimationFrame(frame);
+}
+
+// ─── BG 07: CLAWS — sharp angular metal lines ─────────────────────
+function drawClaws(container) {
+  container.style.background = '#060505';
+  const cv = makeCanvas(container);
+  const c = cv.getContext('2d');
+  let t = 0;
+  function frame() {
+    cv.width = cv.offsetWidth; cv.height = cv.offsetHeight;
+    const W = cv.width, H = cv.height;
+    c.fillStyle = 'rgba(6,5,5,0.6)'; c.fillRect(0,0,W,H);
+    // Three claw sets
+    const claws = [
+      { baseX: 0.15, baseY: 0.25, len: 0.35, angle: -0.3, shift: 0 },
+      { baseX: 0.5, baseY: 0.2, len: 0.4, angle: -0.15, shift: 0.4 },
+      { baseX: 0.85, baseY: 0.25, len: 0.35, angle: 0.0, shift: 0.8 },
+    ];
+    claws.forEach(cl => {
+      const extend = Math.sin(t*0.03 + cl.shift) * 0.5 + 0.5;
+      const bx = cl.baseX * W, by = cl.baseY * H;
+      const ex = bx + Math.cos(cl.angle) * cl.len * W;
+      const ey = by + Math.sin(cl.angle) * cl.len * H - extend * 60;
+      // Blade
+      c.beginPath(); c.moveTo(bx, by);
+      c.lineTo(ex - 12, ey);
+      c.lineTo(ex, ey - 5);
+      c.strokeStyle = 'rgba(200,190,180,0.6)'; c.lineWidth = 2.5; c.stroke();
+      // Edge highlight
+      c.beginPath(); c.moveTo(bx, by);
+      c.lineTo(ex, ey - 5);
+      c.strokeStyle = 'rgba(255,240,220,0.35)'; c.lineWidth = 1; c.stroke();
+      // Tip spark
+      c.beginPath(); c.arc(ex, ey-5, 3+extend*4, 0, Math.PI*2);
+      c.fillStyle = `rgba(255,220,180,${0.3+extend*0.5})`; c.fill();
+    });
+    // Metallic sheen
+    const sheen = c.createLinearGradient(0,0,W*0.7,0);
+    sheen.addColorStop(0,'rgba(255,255,255,0.02)');
+    sheen.addColorStop(0.3,'rgba(255,255,255,0.06)');
+    sheen.addColorStop(1,'rgba(0,0,0,0.3)');
+    c.fillStyle=sheen; c.fillRect(0,0,W,H);
+    t++;
+    activeBgRaf = requestAnimationFrame(frame);
+  }
+  activeBgRaf = requestAnimationFrame(frame);
+}
+
+// ─── BG 08: RC CAR — speed lines + racing circuit ────────────────
+function drawRCCar(container) {
+  container.style.background = '#030508';
+  const cv = makeCanvas(container);
+  const c = cv.getContext('2d');
+  const particles = Array.from({length:40}, () => ({
+    x: Math.random(), y: Math.random(),
+    vx: -0.002-Math.random()*0.006, vy: 0,
+    len: 20+Math.random()*80, alpha: 0.15+Math.random()*0.3,
+  }));
+  let roadY = 0;
+  function frame() {
+    cv.width = cv.offsetWidth; cv.height = cv.offsetHeight;
+    const W = cv.width, H = cv.height;
+    c.fillStyle = 'rgba(3,5,8,0.25)'; c.fillRect(0,0,W,H);
+    // Scrolling road dashes
+    roadY = (roadY + 2.5) % 60;
+    c.strokeStyle = 'rgba(255,255,255,0.12)'; c.lineWidth = 3;
+    c.setLineDash([40, 20]);
+    for(let y=-60+roadY; y<H+60; y+=60){
+      c.beginPath(); c.moveTo(0,y+H*0.35); c.lineTo(W,y+H*0.35); c.stroke();
+      c.beginPath(); c.moveTo(0,y+H*0.65); c.lineTo(W,y+H*0.65); c.stroke();
+    }
+    c.setLineDash([]);
+    // Speed particles
+    particles.forEach(p => {
+      p.x += p.vx;
+      if(p.x < -0.05) { p.x = 1.05; p.y = Math.random(); }
+      c.beginPath(); c.moveTo(p.x*W, p.y*H);
+      c.lineTo((p.x+0.04)*W, p.y*H);
+      c.strokeStyle = `rgba(245,165,36,${p.alpha})`; c.lineWidth = 1.5; c.stroke();
+    });
+    // Car silhouette
+    const cx = W*0.25, cy = H*0.5;
+    c.fillStyle = 'rgba(245,165,36,0.06)'; c.fillRect(cx-40,cy-18,80,36);
+    c.strokeStyle = 'rgba(245,165,36,0.25)'; c.lineWidth=1; c.strokeRect(cx-40,cy-18,80,36);
+    c.fillStyle = 'rgba(245,165,36,0.15)'; c.fillRect(cx-30,cy-28,30,10);
+    // Wheels
+    [cx-24, cx+24].forEach(wx => {
+      c.beginPath(); c.arc(wx, cy+22, 8, 0, Math.PI*2);
+      c.strokeStyle = 'rgba(245,165,36,0.3)'; c.lineWidth=1.5; c.stroke();
+      c.beginPath(); c.arc(wx, cy-22, 8, 0, Math.PI*2); c.stroke();
+    });
+    activeBgRaf = requestAnimationFrame(frame);
+  }
+  activeBgRaf = requestAnimationFrame(frame);
+}
+
+// ─── BG 09: SHORTFORM — film strip + video editing timeline ───────
+function drawShortForm(container) {
+  container.style.background = '#03020a';
+  const cv = makeCanvas(container);
+  const c = cv.getContext('2d');
+  let t = 0;
+  const stars = Array.from({length:50}, () => ({
+    x: Math.random(), y: Math.random(), r: Math.random()*1.8+0.4, tw: Math.random()*Math.PI*2,
+  }));
+  function frame() {
+    cv.width = cv.offsetWidth; cv.height = cv.offsetHeight;
+    const W = cv.width, H = cv.height;
+    c.fillStyle = '#03020a'; c.fillRect(0,0,W,H);
+    // Stars
+    stars.forEach(s => {
+      s.tw+=0.015;
+      c.beginPath();c.arc(s.x*W,s.y*H,s.r,0,Math.PI*2);
+      c.fillStyle=`rgba(160,140,255,${0.25+0.3*Math.sin(s.tw)})`;c.fill();
+    });
+    // Film strip top
+    const stripY1 = H*0.12, stripH = 50;
+    c.fillStyle='rgba(10,8,30,0.8)';c.fillRect(0,stripY1,W,stripH);
+    c.strokeStyle='rgba(120,100,200,0.2)';c.lineWidth=1;c.strokeRect(0,stripY1,W,stripH);
+    for(let x=(t*2)%80-80;x<W+80;x+=80){
+      c.fillStyle='#03020a';c.fillRect(x+10,stripY1+6,8,8);
+      c.fillRect(x+10,stripY1+stripH-14,8,8);
+    }
+    // Waveform in middle
+    const wy=H*0.45, wa=H*0.12;
+    c.beginPath();
+    for(let x=0;x<=W;x+=3){
+      const y=wy+Math.sin(x*0.02+t*0.06)*wa+Math.sin(x*0.05+t*0.04)*wa*0.5;
+      x===0?c.moveTo(x,y):c.lineTo(x,y);
+    }
+    c.strokeStyle='rgba(245,165,36,0.5)';c.lineWidth=2;c.stroke();
+    c.beginPath();
+    for(let x=0;x<=W;x+=3){
+      const y=wy+Math.cos(x*0.03+t*0.05+1)*wa*0.6;
+      x===0?c.moveTo(x,y):c.lineTo(x,y);
+    }
+    c.strokeStyle='rgba(160,100,255,0.35)';c.lineWidth=1.5;c.stroke();
+    // Timeline cursor
+    const cx=(t*1.5)%W;
+    c.strokeStyle='rgba(255,60,60,0.6)';c.lineWidth=2;
+    c.beginPath();c.moveTo(cx,stripY1);c.lineTo(cx,stripY1+stripH);c.stroke();
+    c.beginPath();c.moveTo(cx,H*0.8);c.lineTo(cx,H*0.88);c.stroke();
+    c.fillStyle='rgba(255,60,60,0.8)';
+    c.beginPath();c.arc(cx,H*0.84,6,0,Math.PI*2);c.fill();
+    // Glow
+    const glow=c.createRadialGradient(cx,wy,0,cx,wy,W*0.3);
+    glow.addColorStop(0,'rgba(245,165,36,0.07)');glow.addColorStop(1,'transparent');
+    c.fillStyle=glow;c.fillRect(0,0,W,H);
+    t++;
+    activeBgRaf=requestAnimationFrame(frame);
+  }
+  activeBgRaf=requestAnimationFrame(frame);
+}
+
+// ─── BG 10: TRADING — candlestick chart ───────────────────────────
+function drawTrading(container) {
+  container.style.background = '#010508';
+  const cv = makeCanvas(container);
+  const c = cv.getContext('2d');
+  let t = 0, candles = [];
+  function init(){
+    cv.width=cv.offsetWidth;cv.height=cv.offsetHeight;
+    const cols=Math.floor(cv.width/16);
+    let price=0.5;
+    candles=Array.from({length:cols},()=>{
+      const open=price, close=open+(Math.random()-0.48)*0.04;
+      const high=Math.max(open,close)+Math.random()*0.02;
+      const low=Math.min(open,close)-Math.random()*0.02;
+      price=close+(Math.random()-0.5)*0.015;
+      price=Math.max(0.15,Math.min(0.85,price));
+      return{open,close,high,low,green:close>=open};
+    });
+  }
+  init();
+  function frame(){
+    if(Math.abs(cv.width-cv.offsetWidth)>20)init();
+    const W=cv.width,H=cv.height;
+    c.fillStyle='rgba(1,5,8,0.5)';c.fillRect(0,0,W,H);
+    // Grid
+    c.strokeStyle='rgba(255,255,255,0.04)';c.lineWidth=1;
+    for(let y=0;y<H;y+=H/6){c.beginPath();c.moveTo(0,y);c.lineTo(W,y);c.stroke();}
+    // Shift candles
+    if(t%4===0){candles.shift();const last=candles[candles.length-1];
+      const close=last.close+(Math.random()-0.48)*0.04;
+      const p=Math.max(0.15,Math.min(0.85,close));
+      candles.push({open:last.close,close:p,high:Math.max(last.close,p)+Math.random()*0.02,low:Math.min(last.close,p)-Math.random()*0.02,green:p>=last.close});
+    }
+    // Draw candles
+    const startX=W-candles.length*16;
+    candles.forEach((cnd,i)=>{
+      const x=startX+i*16, bodyH=Math.abs(cnd.open-cnd.close)*H;
+      const y=H-Math.max(cnd.open,cnd.close)*H;
+      const color=cnd.green?'rgba(0,200,100,0.7)':'rgba(240,60,60,0.7)';
+      // Wick
+      c.beginPath();c.moveTo(x+7.5, H-cnd.high*H);c.lineTo(x+7.5, H-cnd.low*H);
+      c.strokeStyle=color;c.lineWidth=1;c.stroke();
+      // Body
+      c.fillStyle=color;c.fillRect(x+2, y, 11, Math.max(1,bodyH));
+    });
+    // Price line (VWAP)
+    const vwapY=H*0.48;
+    c.setLineDash([6,8]);c.beginPath();c.moveTo(0,vwapY);c.lineTo(W,vwapY);
+    c.strokeStyle='rgba(245,165,36,0.3)';c.lineWidth=1.5;c.stroke();c.setLineDash([]);
+    t++;
+    activeBgRaf=requestAnimationFrame(frame);
+  }
+  activeBgRaf=requestAnimationFrame(frame);
+}
+
 
 // ─── SCROLL REVEAL ───────────────────────────────────────────────
 const obs = new IntersectionObserver(entries => {
