@@ -17,7 +17,7 @@
     <!-- Center bubble -->
     <circle cx="200" cy="200" r="44" fill="rgba(245,165,36,0.1)" stroke="rgba(245,165,36,0.6)" stroke-width="1.5"/>
     <text x="200" y="196" text-anchor="middle" font-family="monospace" font-size="8" fill="rgba(245,165,36,0.9)" letter-spacing="3">PROJECTS</text>
-    <text x="200" y="212" text-anchor="middle" font-family="Georgia,serif" font-size="18" fill="rgba(232,225,212,0.9)" font-style="italic">10</text>
+    <text x="200" y="212" text-anchor="middle" font-family="Georgia,serif" font-size="18" fill="rgba(232,225,212,0.9)" font-style="italic">11</text>
     <!-- Orbit bubbles -->
     <circle cx="330" cy="200" r="22" fill="rgba(245,165,36,0.08)" stroke="rgba(245,165,36,0.3)" stroke-width="1"/>
     <circle cx="265" cy="86"  r="20" fill="rgba(245,165,36,0.08)" stroke="rgba(245,165,36,0.3)" stroke-width="1"/>
@@ -321,7 +321,7 @@
       <canvas id="orbit-canvas"></canvas>
       <div class="center-bubble">
         <div class="center-bubble-label">projects</div>
-        <div class="center-bubble-num">10</div>
+        <div class="center-bubble-num">11</div>
       </div>
     </div>
     <p class="orbit-hint">// click any bubble to explore</p>
@@ -439,6 +439,13 @@ const PROJECTS = [
     tags: ['Python','Alpaca API','backtesting','options','quant'],
     link: 'https://github.com/thesquirrel437fr/trading-scanner',
     linkLabel: 'view repo', size: 104, speed: 0.00038,
+  },
+  {
+    id: '11', name: 'DormNet Monitor', teaser: 'Windows hotspot\nclient tracking',
+    desc: 'PowerShell tool that lists every device connected to a Windows Mobile Hotspot — name, IP, MAC, online status, and whether the MAC is real hardware or OS-randomized. Reads the ARP neighbor table, enriches entries via reverse DNS and NetBIOS, and supports live-watch mode with JSON export.',
+    tags: ['PowerShell','networking','ARP','Windows','sysadmin'],
+    link: 'https://github.com/thesquirrel437fr/dormnet-monitor',
+    linkLabel: 'view repo', size: 86, speed: 0.00046,
   },
 ];
 
@@ -576,7 +583,8 @@ function openProject(i) {
   const bgFns = [
     drawForensics, drawLLM, drawGame,
     drawHomeLab, drawPlotter, drawRubik,
-    drawClaws, drawRCCar, drawShortForm, drawTrading
+    drawClaws, drawRCCar, drawShortForm, drawTrading,
+    drawDormnet
   ];
   bgFns[i](overlayBg);
 
@@ -1080,6 +1088,73 @@ function drawTrading(container) {
     const vwapY=H*0.48;
     c.setLineDash([6,8]);c.beginPath();c.moveTo(0,vwapY);c.lineTo(W,vwapY);
     c.strokeStyle='rgba(245,165,36,0.3)';c.lineWidth=1.5;c.stroke();c.setLineDash([]);
+    t++;
+    activeBgRaf=requestAnimationFrame(frame);
+  }
+  activeBgRaf=requestAnimationFrame(frame);
+}
+
+// ─── BG 11: DORMNET — network topology + ARP table ───────────────
+function drawDormnet(container) {
+  container.style.background = '#020810';
+  const cv = makeCanvas(container);
+  const c = cv.getContext('2d');
+  const nodes = Array.from({length:12}, () => ({
+    x: 0.1+Math.random()*0.8, y: 0.1+Math.random()*0.8,
+    vx: (Math.random()-0.5)*0.00015, vy: (Math.random()-0.5)*0.00015,
+    r: 3+Math.random()*4, label: ['iPhone','Mac','RPi','Android','Laptop','iPad','Pixel','Surface','Ubuntu','Kali','Printer','TV'][Math.floor(Math.random()*12)],
+    ip: `192.168.137.${Math.floor(Math.random()*200)+10}`,
+    mac: ['52-E9-A3-D1-18-B1','0E-C1-10-24-7C-70','AA-BB-CC-DD-EE-FF','1A-2B-3C-4D-5E-6F'][Math.floor(Math.random()*4)],
+    online: Math.random()>0.3,
+  }));
+  let t = 0;
+  function frame() {
+    cv.width = cv.offsetWidth; cv.height = cv.offsetHeight;
+    const W = cv.width, H = cv.height;
+    c.fillStyle = 'rgba(2,8,16,0.45)'; c.fillRect(0,0,W,H);
+    // Grid
+    c.strokeStyle = 'rgba(0,180,220,0.05)'; c.lineWidth = 1;
+    for(let x=0;x<W;x+=60){c.beginPath();c.moveTo(x,0);c.lineTo(x,H);c.stroke();}
+    for(let y=0;y<H;y+=60){c.beginPath();c.moveTo(0,y);c.lineTo(W,y);c.stroke();}
+    // Central hub
+    const cx=W/2, cy=H/2;
+    c.beginPath();c.arc(cx,cy,14,0,Math.PI*2);
+    c.fillStyle='rgba(0,180,220,0.2)';c.fill();
+    c.strokeStyle='rgba(0,180,220,0.5)';c.lineWidth=2;c.stroke();
+    c.font='9px "JetBrains Mono",monospace';c.fillStyle='rgba(0,180,220,0.6)';
+    c.fillText('HOTSPOT',cx-24,cy+24);
+    // Nodes + connections
+    nodes.forEach(n => {
+      n.x=Math.max(0.05,Math.min(0.95,n.x+n.vx));
+      n.y=Math.max(0.05,Math.min(0.95,n.y+n.vy));
+      const nx=n.x*W, ny=n.y*H;
+      // Connection line to hub
+      const alpha=0.08+0.04*Math.sin(t*0.02+parseInt(n.ip.split('.')[3]));
+      c.beginPath();c.moveTo(cx,cy);c.lineTo(nx,ny);
+      c.strokeStyle=`rgba(0,180,220,${alpha})`;c.lineWidth=0.8;c.stroke();
+      // Data packet travelling
+      const progress=(t*0.008+parseInt(n.ip.split('.')[3])*0.3)%1;
+      const px=cx+(nx-cx)*progress, py=cy+(ny-cy)*progress;
+      if(progress<0.96){
+        c.beginPath();c.arc(px,py,2,0,Math.PI*2);
+        c.fillStyle=n.online?'rgba(0,255,180,0.7)':'rgba(255,80,80,0.4)';c.fill();
+      }
+      // Node
+      c.beginPath();c.arc(nx,ny,n.r,0,Math.PI*2);
+      c.fillStyle=n.online?'rgba(0,180,220,0.3)':'rgba(100,100,100,0.2)';c.fill();
+      c.strokeStyle=n.online?'rgba(0,220,255,0.6)':'rgba(100,100,100,0.3)';c.lineWidth=1.5;c.stroke();
+      // Label
+      c.font='8px "JetBrains Mono",monospace';
+      c.fillStyle=n.online?'rgba(0,220,255,0.5)':'rgba(150,150,150,0.3)';
+      c.fillText(n.label,nx+8,ny-8);
+      c.fillText(n.ip,nx+8,ny+3);
+    });
+    // Scan sweep line
+    const sweep=(t*1.5)%360;
+    c.beginPath();c.moveTo(cx,cy);
+    const sr=(sweep*Math.PI/180);
+    c.lineTo(cx+Math.cos(sr)*200,cy+Math.sin(sr)*200);
+    c.strokeStyle='rgba(0,255,180,0.15)';c.lineWidth=20;c.stroke();
     t++;
     activeBgRaf=requestAnimationFrame(frame);
   }
