@@ -17,7 +17,7 @@
     <!-- Center bubble -->
     <circle cx="200" cy="200" r="44" fill="rgba(245,165,36,0.1)" stroke="rgba(245,165,36,0.6)" stroke-width="1.5"/>
     <text x="200" y="196" text-anchor="middle" font-family="monospace" font-size="8" fill="rgba(245,165,36,0.9)" letter-spacing="3">PROJECTS</text>
-    <text x="200" y="212" text-anchor="middle" font-family="Georgia,serif" font-size="18" fill="rgba(232,225,212,0.9)" font-style="italic">11</text>
+    <text x="200" y="212" text-anchor="middle" font-family="Georgia,serif" font-size="18" fill="rgba(232,225,212,0.9)" font-style="italic">12</text>
     <!-- Orbit bubbles -->
     <circle cx="330" cy="200" r="22" fill="rgba(245,165,36,0.08)" stroke="rgba(245,165,36,0.3)" stroke-width="1"/>
     <circle cx="265" cy="86"  r="20" fill="rgba(245,165,36,0.08)" stroke="rgba(245,165,36,0.3)" stroke-width="1"/>
@@ -321,7 +321,7 @@
       <canvas id="orbit-canvas"></canvas>
       <div class="center-bubble">
         <div class="center-bubble-label">projects</div>
-        <div class="center-bubble-num">11</div>
+        <div class="center-bubble-num">12</div>
       </div>
     </div>
     <p class="orbit-hint">// click any bubble to explore</p>
@@ -358,7 +358,7 @@
 
 <footer>
   <div>© 2026 Caleb. Built with HTML, stubbornness, and one good cup of coffee.</div>
-  <div>v3.0.0 — 11 projects, orbital edition</div>
+  <div>v3.1.0 — 12 projects, orbital edition</div>
 </footer>
 
 <!-- OVERLAY -->
@@ -446,6 +446,12 @@ const PROJECTS = [
     tags: ['PowerShell','networking','ARP','Windows','sysadmin'],
     link: 'https://github.com/thesquirrel437fr/dormnet-monitor',
     linkLabel: 'view repo', size: 86, speed: 0.00046,
+  },
+  {
+    id: '12', name: 'School Network Ops', teaser: '486 hosts\n26 APs · live map',
+    desc: 'Unified network operations for a K-12 campus — a single-pane dashboard watching ~486 hosts, 26 access points, and 12+ managed switches on a 30-second self-refresh. Profiled every switch over SSH (asyncssh with legacy diffie-hellman-group14 + ssh-rsa, since modern paramiko won\'t talk to this gear), then built a MAC-to-user identity chain threading DHCP leases, auth sessions, AD event logs, NetBIOS, and Aruba client lists into one authoritative map. Added a per-device student watchlist that survives ChromeOS MAC randomization, VPN-suspect detection, top-talker rankings, and per-device kill toggles — all folded into one dashboard (Killswitch, Live, Identity, Chromebooks, Network Map).',
+    tags: ['Python','asyncssh','SSH','networking','identity tracking','dashboards','Aruba','sysadmin'],
+    link: '#', linkLabel: 'details', size: 104, speed: 0.00040,
   },
 ];
 
@@ -584,7 +590,7 @@ function openProject(i) {
     drawForensics, drawLLM, drawGame,
     drawHomeLab, drawPlotter, drawRubik,
     drawClaws, drawRCCar, drawShortForm, drawTrading,
-    drawDormnet
+    drawDormnet, drawNetOps
   ];
   bgFns[i](overlayBg);
 
@@ -1159,6 +1165,88 @@ function drawDormnet(container) {
     activeBgRaf=requestAnimationFrame(frame);
   }
   activeBgRaf=requestAnimationFrame(frame);
+}
+
+
+// ─── BG 12: NETOPS — live network monitor / switch port dashboard ───
+function drawNetOps(container) {
+  container.style.background = '#030b12';
+  const cv = makeCanvas(container);
+  const c = cv.getContext('2d');
+  const hosts = Array.from({length:40}, () => ({
+    x: 0.08+Math.random()*0.84, y: 0.12+Math.random()*0.76,
+    r: 1.5+Math.random()*2.5,
+    vlan: [10,30,40,45,50,99][Math.floor(Math.random()*6)],
+    online: Math.random()>0.2,
+    vpn: Math.random()<0.08,
+  }));
+  const ports = Array.from({length:12}, () => ({ active: Math.random()>0.5 }));
+  let t = 0;
+  function frame() {
+    cv.width = cv.offsetWidth; cv.height = cv.offsetHeight;
+    const W = cv.width, H = cv.height;
+    c.fillStyle = 'rgba(3,11,18,0.35)'; c.fillRect(0,0,W,H);
+    // Grid
+    c.strokeStyle = 'rgba(40,120,255,0.05)'; c.lineWidth = 1;
+    for(let x=0;x<W;x+=70){c.beginPath();c.moveTo(x,0);c.lineTo(x,H);c.stroke();}
+    for(let y=0;y<H;y+=70){c.beginPath();c.moveTo(0,y);c.lineTo(W,y);c.stroke();}
+    // Top status bar
+    c.fillStyle = 'rgba(0,200,255,0.75)';
+    c.font = '11px "JetBrains Mono",monospace';
+    c.fillText(`NETOPS  ·  ${486 + Math.floor(Math.sin(t*0.05)*4)} HOSTS  ·  26 APs  ·  12 SWITCHES`, 20, 28);
+    c.fillStyle = 'rgba(0,200,255,0.35)';
+    c.fillText('LIVE 30s REFRESH', 20, 44);
+    // VLAN legend
+    const vlans = [[10,'#3df','SAAstaff'],[30,'#6f6','HS'],[40,'#fc3','MS'],[45,'#f96','EL'],[50,'#c9f','VOICE'],[99,'#888','GUEST']];
+    let lx = W-230;
+    vlans.forEach(v => {
+      c.fillStyle = v[1];
+      c.font = '9px "JetBrains Mono",monospace';
+      c.fillText(`${v[0]} ${v[2]}`, lx, 28);
+      lx += 36;
+    });
+    // Hosts
+    hosts.forEach(h => {
+      const hx=h.x*W, hy=h.y*H;
+      const blip = h.online ? (Math.random()>0.97 ? 3 : 0) : 0;
+      if (h.online) {
+        const color = h.vpn ? 'rgba(255,80,80,0.85)' : 'rgba(0,200,255,0.75)';
+        c.fillStyle = color;
+        c.beginPath(); c.arc(hx,hy,h.r+blip,0,Math.PI*2); c.fill();
+        // ping ring on random hosts
+        if (Math.random()>0.99) {
+          c.beginPath(); c.arc(hx,hy,6+(t%20),0,Math.PI*2);
+          c.strokeStyle = h.vpn?'rgba(255,80,80,0.4)':'rgba(0,200,255,0.3)'; c.lineWidth=1; c.stroke();
+        }
+      } else {
+        c.fillStyle = 'rgba(90,110,130,0.35)';
+        c.beginPath(); c.arc(hx,hy,h.r,0,Math.PI*2); c.fill();
+      }
+    });
+    // Switch rack on right edge
+    const sw = 70, sh = 16, sx = W-sw-16, sy = H-12*22-20;
+    c.fillStyle = 'rgba(0,200,255,0.08)';
+    c.fillRect(sx-8, sy-18, sw+16, ports.length*22+10);
+    c.strokeStyle = 'rgba(0,200,255,0.3)'; c.lineWidth = 1;
+    c.strokeRect(sx-8, sy-18, sw+16, ports.length*22+10);
+    ports.forEach((p,i) => {
+      const py = sy + i*22;
+      c.fillStyle = p.active ? 'rgba(0,255,170,0.9)' : 'rgba(120,140,160,0.3)';
+      c.fillRect(sx, py, 10, 10);
+      c.fillStyle = 'rgba(0,200,255,0.45)';
+      c.font = '8px "JetBrains Mono",monospace';
+      c.fillText(`SW${String(i+1).padStart(2,'0')}`, sx+16, py+9);
+    });
+    // Scan sweep
+    const sweep = (t*1.2)%360;
+    const cx = W*0.5, cy = H*0.5, sr = Math.min(W,H)*0.35;
+    c.beginPath(); c.moveTo(cx,cy);
+    c.lineTo(cx+Math.cos(sweep*Math.PI/180)*sr, cy+Math.sin(sweep*Math.PI/180)*sr);
+    c.strokeStyle = 'rgba(0,255,170,0.10)'; c.lineWidth = 18; c.stroke();
+    t++;
+    activeBgRaf = requestAnimationFrame(frame);
+  }
+  activeBgRaf = requestAnimationFrame(frame);
 }
 
 
