@@ -2,26 +2,32 @@
 
 **https://portfolio-five-bice-18.vercel.app/**
 
-Single-page portfolio built with vanilla HTML, CSS, and JavaScript. Orbital ring project display, dark theme.
+Single-page portfolio built with vanilla HTML, CSS, and JavaScript. Orbital ring project display, dark theme, custom canvas background animation per project.
 
 ## Projects
 
 | # | Project | Category |
 |---|---------|----------|
 | 01 | Incident Analysis | Forensics / Log Analysis |
-| 02 | Local LLM Stack | Self-Hosted AI |
-| 03 | Flipper Zero | Hardware Hacking |
-| 04 | Choice Engine | C++ / Game Dev |
-| 05 | Minecraft Server | Sysadmin |
-| 06 | Jellyfin Server | Raspberry Pi / Media |
-| 07 | n8n Pipeline | Automation |
+| 02 | Agent Fleet | Autonomous Multi-Agent Orchestration |
+| 03 | Choice Engine | C++ / Game Dev |
+| 04 | Home Lab | Multi-OS Security Lab |
+| 05 | Wall-Drawing Robot | Arduino / Robotics |
+| 06 | Rubik's Cube Solver | Computer Vision / Robotics |
+| 07 | Bionic Claws | Mechanical Design |
+| 08 | Custom RC Car | Electronics / Assembly |
+| 09 | ShortForm Engine | Local AI / Video Pipeline |
+| 10 | Trading Scanner | Quant / Algo Research |
+| 11 | DormNet Monitor | Networking / Sysadmin |
+| 12 | School Network Ops | Network Monitoring / Dashboards |
+| 13 | AI Filter Engine | AI-Driven Content Filtering |
 
 ## Tech
 
 - HTML, CSS, vanilla JS
-- React 18 (UMD, for orbital ring + overlay)
+- Canvas 2D (per-project background animations)
 - Fraunces + JetBrains Mono (Google Fonts)
-- Deployed on Vercel
+- Deployed on Vercel (auto-deploy from `main`)
 
 ## Structure
 
@@ -32,7 +38,7 @@ Single-page portfolio built with vanilla HTML, CSS, and JavaScript. Orbital ring
 
 ## Development
 
-Edit `index.html` directly. The project data array and orbital tweaks are at the bottom of the file. Push to `main` and Vercel deploys automatically.
+Edit `index.html` directly. Project data lives in the `PROJECTS` array near the top of the script block; background animations are the `drawXxx()` functions; orbital tweaks are in `TWEAK_DEFAULTS`. Push to `main` and Vercel deploys automatically.
 
 ## Contact
 
