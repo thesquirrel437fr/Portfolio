@@ -17,7 +17,7 @@
     <!-- Center bubble -->
     <circle cx="200" cy="200" r="44" fill="rgba(245,165,36,0.1)" stroke="rgba(245,165,36,0.6)" stroke-width="1.5"/>
     <text x="200" y="196" text-anchor="middle" font-family="monospace" font-size="8" fill="rgba(245,165,36,0.9)" letter-spacing="3">PROJECTS</text>
-    <text x="200" y="212" text-anchor="middle" font-family="Georgia,serif" font-size="18" fill="rgba(232,225,212,0.9)" font-style="italic">12</text>
+    <text x="200" y="212" text-anchor="middle" font-family="Georgia,serif" font-size="18" fill="rgba(232,225,212,0.9)" font-style="italic">13</text>
     <!-- Orbit bubbles -->
     <circle cx="330" cy="200" r="22" fill="rgba(245,165,36,0.08)" stroke="rgba(245,165,36,0.3)" stroke-width="1"/>
     <circle cx="265" cy="86"  r="20" fill="rgba(245,165,36,0.08)" stroke="rgba(245,165,36,0.3)" stroke-width="1"/>
@@ -232,7 +232,9 @@
   .overlay-num { font-family: var(--mono); font-size: 0.7rem; color: var(--amber); letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 0.75rem; }
   .overlay-title { font-family: var(--serif); font-style: italic; font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 300; letter-spacing: -0.02em; line-height: 1.05; margin-bottom: 1.5rem; color: var(--ink); }
   .overlay-title em { color: var(--amber); font-style: normal; }
-  .overlay-desc { font-size: 1rem; color: var(--ink-dim); line-height: 1.8; margin-bottom: 2rem; max-width: 58ch; }
+  .overlay-desc { font-size: 1rem; color: var(--ink-dim); line-height: 1.65; margin: 0 0 2rem; padding: 0; list-style: none; max-width: 60ch; }
+  .overlay-desc li { position: relative; padding-left: 1.35rem; margin-bottom: 0.6rem; }
+  .overlay-desc li::before { content: '—'; position: absolute; left: 0; color: var(--amber); }
   .overlay-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 2rem; }
   .overlay-tag { font-family: var(--mono); font-size: 0.7rem; padding: 0.3rem 0.7rem; border: 1px solid rgba(245,165,36,0.22); color: var(--amber); letter-spacing: 0.05em; background: rgba(245,165,36,0.05); }
   .overlay-link { font-family: var(--mono); font-size: 0.85rem; color: var(--bg); text-decoration: none; background: var(--amber); padding: 0.8rem 1.6rem; display: inline-block; transition: background 0.2s; letter-spacing: 0.05em; }
@@ -321,7 +323,7 @@
       <canvas id="orbit-canvas"></canvas>
       <div class="center-bubble">
         <div class="center-bubble-label">projects</div>
-        <div class="center-bubble-num">12</div>
+        <div class="center-bubble-num">13</div>
       </div>
     </div>
     <p class="orbit-hint">// click any bubble to explore</p>
@@ -358,7 +360,7 @@
 
 <footer>
   <div>© 2026 Caleb. Built with HTML, stubbornness, and one good cup of coffee.</div>
-  <div>v3.1.0 — 12 projects, orbital edition</div>
+  <div>v3.2.0 — 13 projects, orbital edition</div>
 </footer>
 
 <!-- OVERLAY -->
@@ -368,7 +370,7 @@
     <button class="overlay-close" id="overlay-close">[ esc ]</button>
     <div class="overlay-num" id="overlay-num"></div>
     <h2 class="overlay-title" id="overlay-title"></h2>
-    <p class="overlay-desc" id="overlay-desc"></p>
+    <ul class="overlay-desc" id="overlay-desc"></ul>
     <div class="overlay-tags" id="overlay-tags"></div>
     <a href="#" class="overlay-link" id="overlay-link" target="_blank"></a>
   </div>
@@ -378,80 +380,82 @@
 // ─── PROJECT DATA ───────────────────────────────────────────────
 const PROJECTS = [
   {
-    id: '01', name: 'Incident Analysis', teaser: 'Forensic\nlog deep-dive',
-    desc: 'Forensic analysis of a simulated security breach at "Cloud Services, Inc." Reconstructed the full attack chain — SSH brute force, privilege escalation, backup-account persistence, loopback pivot, and 100+ files staged for exfiltration — from auth.log, Suricata alerts, and auditd events. Mapped each step to MITRE ATT&CK and produced a phased remediation roadmap accounting for HIPAA / PCI-DSS exposure.',
-    tags: ['incident response','MITRE ATT&CK','log analysis','forensics'],
-    link: 'https://github.com/thesquirrel437fr/Portfolio/blob/main/reports/incident-analysis.pdf',
-    linkLabel: 'read report', size: 110, speed: 0.00032,
+    id: "01", name: "Incident Analysis", teaser: "Forensic\nlog deep-dive",
+    desc: ["Reconstructed a simulated breach at \"Cloud Services, Inc.\" end-to-end: SSH brute force → privilege escalation → backup-account persistence → loopback pivot.", "Recovered 100+ files staged for exfiltration from auth.log, Suricata alerts, and auditd events.", "Mapped every step to MITRE ATT&CK; produced a phased remediation roadmap accounting for HIPAA / PCI-DSS exposure."],
+    tags: ["incident response", "MITRE ATT&CK", "log analysis", "forensics"],
+    link: "https://github.com/thesquirrel437fr/Portfolio/blob/main/reports/incident-analysis.pdf", linkLabel: "read report", size: 110, speed: 0.00032,
   },
   {
-    id: '02', name: 'Agent Fleet', teaser: 'Autonomous multi-agent\\norchestration',
-    desc: 'Cross-platform autonomous agent fleet spanning security, markets, career ops, and systems engineering. A fleet lead runs 182-skill pentesting operations — network exploitation, red team, wireless attacks, cloud security, macOS exploitation — and hardened the fleet with a Tailscale mesh and Discord War Room for cross-agent coordination. A markets agent executes 9 cron-scheduled strategies on market days: pre-market analysis, options entry and exit, mean-reversion trades, and daily post-mortems, all on live Alpaca API execution; also supplies market validation on career leads (company valuations, funding rounds, IPO trajectories). A career agent runs the full job pipeline — discovery, application tracking, dossier creation — and fuses cross-agent intel into battle-ready opportunity briefs (e.g., PP-001 Anthropic Fellowship, PP-002 Lila Sciences). A systems agent is the fleet builder: every other agent delegates code review, architecture decisions, and low-level systems programming through his MCP tool server. All agents are cron-scheduled, coordinate through the War Room, and are orchestrated via Hermes Agent with MCP integration.',
-    tags: ['Hermes','MCP','pentesting','trading','career ops','code review','Tailscale','orchestration'],
-    link: '#', linkLabel: 'details', size: 102, speed: 0.00048,
+    id: "02", name: "Agent Fleet", teaser: "Autonomous multi-agent\norchestration",
+    desc: ["Fleet lead runs 182-skill pentesting operations — network exploitation, red team, wireless, cloud, macOS.", "Markets agent executes 9 cron-scheduled strategies on live Alpaca: pre-market analysis, options entry/exit, mean-reversion, daily post-mortems.", "Career agent runs the full job pipeline — discovery, application tracking, dossiers, battle-ready briefs.", "Systems agent is the fleet builder — every other agent delegates code review and architecture through his MCP tool server.", "All cron-scheduled, coordinated through a Discord War Room + Tailscale mesh, orchestrated via Hermes Agent."],
+    tags: ["Hermes", "MCP", "pentesting", "trading", "career ops", "code review", "Tailscale", "orchestration"],
+    link: "#", linkLabel: "details", size: 102, speed: 0.00048,
   },
   {
-    id: '03', name: 'Choice Engine', teaser: 'C++ branching\nadventure game',
-    desc: 'A Stanley Parable–inspired choose-your-own-adventure built in C++ with raylib. Animated sprites, branching narrative scenes, a dragon boss fight, and a scrolling credits screen. Group project, three-person team.',
-    tags: ['C++','raylib','OOP','game design'],
-    link: '#', linkLabel: 'view repo', size: 96, speed: 0.00028,
+    id: "03", name: "Choice Engine", teaser: "C++ branching\nadventure game",
+    desc: ["A Stanley Parable–inspired choose-your-own-adventure in C++ with raylib.", "Animated sprites, branching narrative scenes, a dragon boss fight, scrolling credits.", "Group project, three-person team."],
+    tags: ["C++", "raylib", "OOP", "game design"],
+    link: "#", linkLabel: "view repo", size: 96, speed: 0.00028,
   },
   {
-    id: '04', name: 'Home Lab', teaser: 'Multi-OS\nsecurity testing',
-    desc: 'Multi-OS security lab for controlled attack/defense experiments. macOS VMs on a Windows 11 hypervisor, hardened Raspberry Pi services running isolated workloads, and a segmented network for traffic analysis and exploit testing without collateral damage.',
-    tags: ['VMware','Linux','macOS','Raspberry Pi','security lab'],
-    link: '#', linkLabel: 'details', size: 98, speed: 0.00042,
+    id: "04", name: "Home Lab", teaser: "Multi-OS\nsecurity testing",
+    desc: ["Multi-OS security lab for controlled attack/defense experiments.", "macOS VMs on a Windows 11 hypervisor; hardened Raspberry Pi services running isolated workloads.", "Segmented network for traffic analysis and exploit testing without collateral damage."],
+    tags: ["VMware", "Linux", "macOS", "Raspberry Pi", "security lab"],
+    link: "#", linkLabel: "details", size: 98, speed: 0.00042,
   },
   {
-    id: '05', name: 'Wall-Drawing Robot', teaser: 'Arduino plotter\nvertical surfaces',
-    desc: 'Arduino-driven vertical plotter that reproduces any digital image on walls. Custom gantry with stepper motors, belt-driven carriage, and G-code interpreter fed from processed raster data. Built to draw at scale where printers can\'t reach.',
-    tags: ['Arduino','stepper motors','G-code','image processing'],
-    link: '#', linkLabel: 'details', size: 94, speed: 0.00036,
+    id: "05", name: "Wall-Drawing Robot", teaser: "Arduino plotter\nvertical surfaces",
+    desc: ["Arduino-driven vertical plotter that reproduces any digital image on walls.", "Custom gantry, stepper motors, belt-driven carriage, G-code interpreter.", "Fed from processed raster data — draws at scale where printers can’t reach."],
+    tags: ["Arduino", "stepper motors", "G-code", "image processing"],
+    link: "#", linkLabel: "details", size: 94, speed: 0.00036,
   },
   {
-    id: '06', name: 'Rubik\'s Cube Solver', teaser: 'CV + servo\nautomated solving',
-    desc: 'Automated Rubik\'s Cube solver combining computer vision pattern recognition with servo-driven mechanical grippers. Scans each face via webcam, runs Kociemba\'s two-phase algorithm for an optimal solution, and executes in under 90 seconds.',
-    tags: ['computer vision','servos','algorithms','Python','Arduino'],
-    link: '#', linkLabel: 'details', size: 100, speed: 0.00034,
+    id: "06", name: "Rubik's Cube Solver", teaser: "CV + servo\nautomated solving",
+    desc: ["Computer vision reads each face via webcam; servo-driven grippers execute the turns.", "Kociemba's two-phase algorithm for near-optimal solutions.", "Full solve in under 90 seconds."],
+    tags: ["computer vision", "servos", "algorithms", "Python", "Arduino"],
+    link: "#", linkLabel: "details", size: 100, speed: 0.00034,
   },
   {
-    id: '07', name: 'Bionic Claws', teaser: 'Wolverine-style\nmechanical actuation',
-    desc: 'Retractable claw rig with spring-loaded mechanical actuation triggered by wrist flexion. 3D-printed housing with adjustable tension, sliding rail bearings, and a locking mechanism that holds both extended and retracted positions cleanly.',
-    tags: ['mechanical design','3D printing','actuation','prototyping'],
-    link: '#', linkLabel: 'details', size: 90, speed: 0.00050,
+    id: "07", name: "Bionic Claws", teaser: "Wolverine-style\nmechanical actuation",
+    desc: ["Retractable claw rig with spring-loaded actuation triggered by wrist flexion.", "3D-printed housing, adjustable tension, sliding rail bearings.", "Locking mechanism holds both extended and retracted positions cleanly."],
+    tags: ["mechanical design", "3D printing", "actuation", "prototyping"],
+    link: "#", linkLabel: "details", size: 90, speed: 0.0005,
   },
   {
-    id: '08', name: 'Custom RC Car', teaser: 'Component-built\nfrom scratch',
-    desc: 'RC car built entirely from individual components — chassis plate, ESCs, brushless motor, LiPo battery pack, differential, and 2.4 GHz radio receiver. Custom wiring harness with XT60 connectors, thermal management for sustained runs.',
-    tags: ['RC','electronics','soldering','LiPo','assembly'],
-    link: '#', linkLabel: 'details', size: 88, speed: 0.00044,
+    id: "08", name: "Custom RC Car", teaser: "Component-built\nfrom scratch",
+    desc: ["Built from individual components: chassis, ESCs, brushless motor, LiPo, differential, 2.4 GHz receiver.", "Custom wiring harness with XT60 connectors and thermal management for sustained runs."],
+    tags: ["RC", "electronics", "soldering", "LiPo", "assembly"],
+    link: "#", linkLabel: "details", size: 88, speed: 0.00044,
   },
   {
-    id: '09', name: 'ShortForm Engine', teaser: '$0 short-form\nvideo pipeline',
-    desc: 'Self-hosted, zero-cost short-form video pipeline. Ollama writes scripts, Fish-Speech clones voices with a custom throat-rasp DSP chain, an animated avatar lip-bounces to the audio, and word-synced captions sit over looping gameplay — all composed by FFmpeg into a ready-to-post 1080×1920 MP4. Split-host across Mac mini + Windows/RTX 3080.',
-    tags: ['Ollama','Fish-Speech','FFmpeg','Python','voice cloning','local AI'],
-    link: 'https://github.com/thesquirrel437fr/shortform-engine',
-    linkLabel: 'view repo', size: 108, speed: 0.00030,
+    id: "09", name: "ShortForm Engine", teaser: "$0 short-form\nvideo pipeline",
+    desc: ["Self-hosted, zero-cost short-form video pipeline.", "Ollama writes scripts; Fish-Speech clones voices with a custom throat-rasp DSP chain.", "Animated avatar + word-synced captions over looping gameplay, composed by FFmpeg into 1080×1920 MP4.", "Split-host across Mac mini + Windows/RTX 3080."],
+    tags: ["Ollama", "Fish-Speech", "FFmpeg", "Python", "voice cloning", "local AI"],
+    link: "https://github.com/thesquirrel437fr/shortform-engine", linkLabel: "view repo", size: 108, speed: 0.0003,
   },
   {
-    id: '10', name: 'Trading Scanner', teaser: 'Paper trading\nresearch system',
-    desc: 'Systematic paper-trading research engine on the Alpaca API. VWAP mean-reversion and options put-credit-spread strategies with vectorized backtesting, FIFO-reconciled journal-based P&L, and a locked promotion bar (profit factor ≥ 1.3, ≥ 100 closed trades) before any real capital. Every edge validated out-of-sample.',
-    tags: ['Python','Alpaca API','backtesting','options','quant'],
-    link: 'https://github.com/thesquirrel437fr/trading-scanner',
-    linkLabel: 'view repo', size: 104, speed: 0.00038,
+    id: "10", name: "Trading Scanner", teaser: "Paper trading\nresearch system",
+    desc: ["Systematic paper-trading research engine on the Alpaca API.", "VWAP mean-reversion and options put-credit-spread strategies, vectorized backtesting, FIFO-reconciled P&L.", "Locked promotion bar — profit factor ≥ 1.3 and ≥ 100 closed trades — before any real capital."],
+    tags: ["Python", "Alpaca API", "backtesting", "options", "quant"],
+    link: "https://github.com/thesquirrel437fr/trading-scanner", linkLabel: "view repo", size: 104, speed: 0.00038,
   },
   {
-    id: '11', name: 'DormNet Monitor', teaser: 'Windows hotspot\nclient tracking',
-    desc: 'PowerShell tool that lists every device connected to a Windows Mobile Hotspot — name, IP, MAC, online status, and whether the MAC is real hardware or OS-randomized. Reads the ARP neighbor table, enriches entries via reverse DNS and NetBIOS, and supports live-watch mode with JSON export.',
-    tags: ['PowerShell','networking','ARP','Windows','sysadmin'],
-    link: 'https://github.com/thesquirrel437fr/dormnet-monitor',
-    linkLabel: 'view repo', size: 86, speed: 0.00046,
+    id: "11", name: "DormNet Monitor", teaser: "Windows hotspot\nclient tracking",
+    desc: ["Lists every device on a Windows Mobile Hotspot: name, IP, MAC, online status.", "Flags whether each MAC is real hardware or OS-randomized.", "Reads the ARP neighbor table, enriches via reverse DNS + NetBIOS, live-watch mode with JSON export."],
+    tags: ["PowerShell", "networking", "ARP", "Windows", "sysadmin"],
+    link: "https://github.com/thesquirrel437fr/dormnet-monitor", linkLabel: "view repo", size: 86, speed: 0.00046,
   },
   {
-    id: '12', name: 'School Network Ops', teaser: '486 hosts\n26 APs · live map',
-    desc: 'Unified network operations for a K-12 campus — a single-pane dashboard watching ~486 hosts, 26 access points, and 12+ managed switches on a 30-second self-refresh. Profiled every switch over SSH (asyncssh with legacy diffie-hellman-group14 + ssh-rsa, since modern paramiko won\'t talk to this gear), then built a MAC-to-user identity chain threading DHCP leases, auth sessions, AD event logs, NetBIOS, and Aruba client lists into one authoritative map. Added a per-device student watchlist that survives ChromeOS MAC randomization, VPN-suspect detection, top-talker rankings, and per-device kill toggles — all folded into one dashboard (Killswitch, Live, Identity, Chromebooks, Network Map).',
-    tags: ['Python','asyncssh','SSH','networking','identity tracking','dashboards','Aruba','sysadmin'],
-    link: '#', linkLabel: 'details', size: 104, speed: 0.00040,
+    id: "12", name: "School Network Ops", teaser: "486 hosts\n26 APs · live map",
+    desc: ["Single-pane dashboard watching ~486 hosts, 26 APs, and 12+ managed switches on a 30-second self-refresh.", "Profiled every switch over SSH — asyncssh with legacy diffie-hellman-group14 + ssh-rsa, since modern paramiko won’t talk to this gear.", "MAC-to-user identity chain: DHCP lease → auth session → AD event log → NetBIOS → Aruba client list.", "Student watchlist survives ChromeOS MAC randomization; VPN-suspect detection, top-talker rankings, per-device kill toggles."],
+    tags: ["Python", "asyncssh", "SSH", "networking", "identity tracking", "dashboards", "Aruba", "sysadmin"],
+    link: "#", linkLabel: "details", size: 104, speed: 0.0004,
+  },
+  {
+    id: "13", name: "AI Filter Engine", teaser: "9,000+ sites\nagent-controlled",
+    desc: ["An AI agent (Hermes) drives the entire content filter — it reverse-engineered the vendor’s undocumented REST API and manages auth/token lifecycle, device registration, policy reads, and signature + URL-pool updates.", "9,000+ sites blocked and enforced by policy (not just logged), organized into URL pools across the whole campus.", "Killswitch V1 → V2: rebuilt from 403+ domains / 17 signature classes into a gaming–streaming–social model that carves out YouTube, Instagram, and Spotify so classes stay functional.", "VPN-proof filtering: multi-subagent research to block the full VPN / proxy / tunnel surface — NordVPN, ExpressVPN, ProtonVPN, Surfshark, Tor, WireGuard, WARP — while keeping Tailscale open for staff.", "Per-student, per-class-period default-deny whitelisting, MAC mapped to student via DHCP + Linewize.", "Blocked-site alerting with identity resolution, per-device killswitch, and a CIPA compliance audit with AI-tool allow/deny tuning."],
+    tags: ["Python", "AI agents", "Hermes", "content filtering", "VPN blocking", "CIPA", "network security"],
+    link: "#", linkLabel: "details", size: 108, speed: 0.00034,
   },
 ];
 
@@ -574,7 +578,12 @@ function openProject(i) {
   const p = PROJECTS[i];
   overlayNum.textContent   = `— project ${p.id} of ${N}`;
   overlayTitle.textContent = p.name;
-  overlayDesc.textContent  = p.desc;
+  overlayDesc.innerHTML = '';
+  p.desc.forEach(b => {
+    const li = document.createElement('li');
+    li.textContent = b;
+    overlayDesc.appendChild(li);
+  });
   overlayTags.innerHTML    = p.tags.map(t => `<span class="overlay-tag">${t}</span>`).join('');
   overlayLink.href         = p.link;
   overlayLink.textContent  = p.linkLabel + ' →';
@@ -590,7 +599,7 @@ function openProject(i) {
     drawForensics, drawLLM, drawGame,
     drawHomeLab, drawPlotter, drawRubik,
     drawClaws, drawRCCar, drawShortForm, drawTrading,
-    drawDormnet, drawNetOps
+    drawDormnet, drawNetOps, drawNetFilter
   ];
   bgFns[i](overlayBg);
 
@@ -1243,6 +1252,64 @@ function drawNetOps(container) {
     c.beginPath(); c.moveTo(cx,cy);
     c.lineTo(cx+Math.cos(sweep*Math.PI/180)*sr, cy+Math.sin(sweep*Math.PI/180)*sr);
     c.strokeStyle = 'rgba(0,255,170,0.10)'; c.lineWidth = 18; c.stroke();
+    t++;
+    activeBgRaf = requestAnimationFrame(frame);
+  }
+  activeBgRaf = requestAnimationFrame(frame);
+}
+
+
+// ─── BG 13: NETFILTER — AI content-filter firewall gate ───
+function drawNetFilter(container) {
+  container.style.background = '#08030a';
+  const cv = makeCanvas(container);
+  const c = cv.getContext('2d');
+  const domains = ['youtube.com','netflix.com','twitch.tv','instagram.com','spotify.com','nordvpn.com','proton.me','discord.com','roblox.com','fortnite.com','torproject.org','expressvpn.com','surfshark.com','whatsapp.com'];
+  const reqs = Array.from({length:16}, () => ({
+    domain: domains[Math.floor(Math.random()*domains.length)],
+    y: 0.1+Math.random()*0.8,
+    speed: 0.0008+Math.random()*0.0012,
+    allow: Math.random() < 0.35,
+    x: 0.02+Math.random()*0.45,
+  }));
+  let t = 0;
+  function frame() {
+    cv.width = cv.offsetWidth; cv.height = cv.offsetHeight;
+    const W = cv.width, H = cv.height;
+    c.fillStyle = 'rgba(8,3,10,0.35)'; c.fillRect(0,0,W,H);
+    c.strokeStyle = 'rgba(255,80,140,0.05)'; c.lineWidth = 1;
+    for(let x=0;x<W;x+=50){c.beginPath();c.moveTo(x,0);c.lineTo(x,H);c.stroke();}
+    for(let y=0;y<H;y+=50){c.beginPath();c.moveTo(0,y);c.lineTo(W,y);c.stroke();}
+    c.fillStyle = 'rgba(255,120,160,0.8)';
+    c.font = '11px "JetBrains Mono",monospace';
+    c.fillText('AI FILTER ENGINE  ·  ' + (9000 + Math.floor(t*0.3)) + ' SITES BLOCKED', 20, 28);
+    c.fillStyle = 'rgba(255,120,160,0.35)';
+    c.fillText('POLICY · URL POOLS · KILLSWITCH', 20, 44);
+    const gx = W*0.5, gy = H*0.5;
+    const pulse = 1 + Math.sin(t*0.05)*0.1;
+    c.beginPath(); c.arc(gx,gy,30*pulse,0,Math.PI*2);
+    c.fillStyle = 'rgba(255,80,140,0.15)'; c.fill();
+    c.strokeStyle = 'rgba(255,80,140,0.7)'; c.lineWidth = 2; c.stroke();
+    c.fillStyle = 'rgba(255,150,180,0.9)';
+    c.font = 'bold 11px "JetBrains Mono",monospace';
+    c.textAlign = 'center';
+    c.fillText('AI', gx, gy+4);
+    c.textAlign = 'left';
+    reqs.forEach(r => {
+      r.x += r.speed;
+      if (r.x > 0.98) { r.x = 0.02; r.domain = domains[Math.floor(Math.random()*domains.length)]; r.allow = Math.random()<0.35; }
+      const rx = r.x*W, ry = r.y*H;
+      c.beginPath(); c.moveTo(rx,ry); c.lineTo(gx,gy);
+      c.strokeStyle = 'rgba(255,120,160,0.12)'; c.lineWidth = 0.6; c.stroke();
+      c.font = '9px "JetBrains Mono",monospace';
+      c.fillStyle = r.allow ? 'rgba(0,255,170,0.7)' : 'rgba(255,80,80,0.7)';
+      c.fillText(r.domain, rx, ry);
+      if (r.x > 0.52) {
+        c.fillStyle = r.allow ? 'rgba(0,255,170,0.85)' : 'rgba(255,80,80,0.85)';
+        c.font = '9px "JetBrains Mono",monospace';
+        c.fillText(r.allow?'ALLOW':'BLOCK', rx, ry+14);
+      }
+    });
     t++;
     activeBgRaf = requestAnimationFrame(frame);
   }
