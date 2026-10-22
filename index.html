@@ -17,7 +17,7 @@
     <!-- Center bubble -->
     <circle cx="200" cy="200" r="44" fill="rgba(245,165,36,0.1)" stroke="rgba(245,165,36,0.6)" stroke-width="1.5"/>
     <text x="200" y="196" text-anchor="middle" font-family="monospace" font-size="8" fill="rgba(245,165,36,0.9)" letter-spacing="3">PROJECTS</text>
-    <text x="200" y="212" text-anchor="middle" font-family="Georgia,serif" font-size="18" fill="rgba(232,225,212,0.9)" font-style="italic">13</text>
+    <text x="200" y="212" text-anchor="middle" font-family="Georgia,serif" font-size="18" fill="rgba(232,225,212,0.9)" font-style="italic">14</text>
     <!-- Orbit bubbles -->
     <circle cx="330" cy="200" r="22" fill="rgba(245,165,36,0.08)" stroke="rgba(245,165,36,0.3)" stroke-width="1"/>
     <circle cx="265" cy="86"  r="20" fill="rgba(245,165,36,0.08)" stroke="rgba(245,165,36,0.3)" stroke-width="1"/>
@@ -323,7 +323,7 @@
       <canvas id="orbit-canvas"></canvas>
       <div class="center-bubble">
         <div class="center-bubble-label">projects</div>
-        <div class="center-bubble-num">13</div>
+        <div class="center-bubble-num">14</div>
       </div>
     </div>
     <p class="orbit-hint">// click any bubble to explore</p>
@@ -456,6 +456,16 @@ const PROJECTS = [
     desc: ["An AI agent (Hermes) drives the entire content filter — it reverse-engineered the vendor’s undocumented REST API and manages auth/token lifecycle, device registration, policy reads, and signature + URL-pool updates.", "9,000+ sites blocked and enforced by policy (not just logged), organized into URL pools across the whole campus.", "Killswitch V1 → V2: rebuilt from 403+ domains / 17 signature classes into a gaming–streaming–social model that carves out YouTube, Instagram, and Spotify so classes stay functional.", "VPN-proof filtering: multi-subagent research to block the full VPN / proxy / tunnel surface — NordVPN, ExpressVPN, ProtonVPN, Surfshark, Tor, WireGuard, WARP — while keeping Tailscale open for staff.", "Per-student, per-class-period default-deny whitelisting, MAC mapped to student via DHCP + Linewize.", "Blocked-site alerting with identity resolution, per-device killswitch, and a CIPA compliance audit with AI-tool allow/deny tuning."],
     tags: ["Python", "AI agents", "Hermes", "content filtering", "VPN blocking", "CIPA", "network security"],
     link: "#", linkLabel: "details", size: 108, speed: 0.00034,
+  },
+  {
+    id: "14", name: "WallaWallaCaf", teaser: "Live campus dining\nratings · Plan B",
+    desc: ["Fan-made parody web app answering one question: should you eat at the caf today?",
+      "Live daily scores and dish-by-dish 'evidence' ratings, plus a drag-to-vote student scoreboard with verdicts and roasts.",
+      "'Plan B' mode pulls real shelf prices from the local Walmart to build DIY meal kits and do the per-meal math.",
+      "'Escape routes' directory of cheap eats nearby, with hours and pricing.",
+      "Single-page app with PWA icons, Google Analytics, and live-menu integration wired for real dining-hall data."],
+    tags: ["web app", "JavaScript", "SPA", "UX", "PWA", "data viz"],
+    link: "https://wallawallacaf.tech/", linkLabel: "visit site", size: 102, speed: 0.00036,
   },
 ];
 
@@ -599,7 +609,7 @@ function openProject(i) {
     drawForensics, drawLLM, drawGame,
     drawHomeLab, drawPlotter, drawRubik,
     drawClaws, drawRCCar, drawShortForm, drawTrading,
-    drawDormnet, drawNetOps, drawNetFilter
+    drawDormnet, drawNetOps, drawNetFilter, drawWallacaf
   ];
   bgFns[i](overlayBg);
 
@@ -1309,6 +1319,59 @@ function drawNetFilter(container) {
         c.font = '9px "JetBrains Mono",monospace';
         c.fillText(r.allow?'ALLOW':'BLOCK', rx, ry+14);
       }
+    });
+    t++;
+    activeBgRaf = requestAnimationFrame(frame);
+  }
+  activeBgRaf = requestAnimationFrame(frame);
+}
+
+
+// ─── BG 14: WALLAWALLACAF — live cafeteria scoreboard ───
+function drawWallacaf(container) {
+  container.style.background = '#201e1d';
+  const cv = makeCanvas(container);
+  const c = cv.getContext('2d');
+  const dishes = ['mac & cheese','veggie burger','tater tots','pho bar','pizza slice','salad bar','chicken bowl','taco tues'];
+  const votes = Array.from({length: 9}, () => ({
+    dish: dishes[Math.floor(Math.random()*dishes.length)],
+    y: 0.15+Math.random()*0.7,
+    speed: 0.0006+Math.random()*0.0011,
+    x: 0.02+Math.random()*0.4,
+    score: 4+Math.floor(Math.random()*7),
+    good: Math.random() > 0.5,
+  }));
+  let t = 0;
+  function frame() {
+    cv.width = cv.offsetWidth; cv.height = cv.offsetHeight;
+    const W = cv.width, H = cv.height;
+    c.fillStyle = 'rgba(32,30,29,0.35)'; c.fillRect(0,0,W,H);
+    c.fillStyle = 'rgba(236,48,19,0.9)';
+    c.font = 'bold 12px "JetBrains Mono",monospace';
+    c.fillText('WALLAWALLACAF  ·  SHOULD YOU EAT AT THE CAF TODAY?', 20, 30);
+    c.fillStyle = 'rgba(236,48,19,0.4)';
+    c.font = '10px "JetBrains Mono",monospace';
+    c.fillText('LIVE STUDENT SCORES · PLAN B: WALMART KITS', 20, 46);
+    const gx = W*0.72, gy = H*0.42;
+    const score = 5.5 + Math.sin(t*0.03)*2.5;
+    c.beginPath(); c.arc(gx, gy, 52, 0, Math.PI*2);
+    c.strokeStyle = 'rgba(236,48,19,0.7)'; c.lineWidth = 2; c.stroke();
+    c.fillStyle = 'rgba(236,48,19,0.12)'; c.fill();
+    c.fillStyle = 'rgba(245,165,36,0.95)';
+    c.font = 'bold 30px "JetBrains Mono",monospace';
+    c.textAlign = 'center';
+    c.fillText(score.toFixed(1), gx, gy+6);
+    c.font = '10px "JetBrains Mono",monospace';
+    c.fillStyle = 'rgba(236,48,19,0.8)';
+    c.fillText('CAF SCORE / 10', gx, gy+24);
+    c.textAlign = 'left';
+    votes.forEach(v => {
+      v.x += v.speed;
+      if (v.x > 0.95) { v.x = 0.02; v.dish = dishes[Math.floor(Math.random()*dishes.length)]; v.score = 4+Math.floor(Math.random()*7); v.good = Math.random()>0.5; }
+      const rx = v.x*W, ry = v.y*H;
+      c.font = '11px "JetBrains Mono",monospace';
+      c.fillStyle = v.good ? 'rgba(0,255,170,0.85)' : 'rgba(255,80,80,0.85)';
+      c.fillText((v.good ? '▲ ' : '▽ ') + v.dish + '  ' + v.score + '/10', rx, ry);
     });
     t++;
     activeBgRaf = requestAnimationFrame(frame);
