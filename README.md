@@ -21,6 +21,7 @@ Single-page portfolio built with vanilla HTML, CSS, and JavaScript. Orbital ring
 | 11 | DormNet Monitor | Networking / Sysadmin |
 | 12 | School Network Ops | Network Monitoring / Dashboards |
 | 13 | AI Filter Engine | AI-Driven Content Filtering |
+| 14 | WallaWallaCaf | Web App / Consumer Product |
 
 ## Tech
 
